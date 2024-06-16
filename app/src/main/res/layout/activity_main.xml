@@ -12,16 +12,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="#FFFFFF"> <!-- Adicionei um fundo branco para a tela -->
 
         <Button
             android:id="@+id/buttonViewWorkout"
+            style="@style/CustomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Visualizar Treino" />
 
         <Button
             android:id="@+id/buttonViewDiet"
+            style="@style/CustomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Visualizar Dieta"
