@@ -6,5 +6,5 @@ import retrofit2.http.POST;
 
 public interface ApiService {
     @GET("/workout-plan")
-    Call<Object> getTeste();
+    Call<GetWorkoutResponseDTO> getTeste();
 }

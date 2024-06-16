@@ -51,20 +51,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeApiRequest() {
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<Object> call = apiService.getTeste();
+        Call<GetWorkoutResponseDTO> call = apiService.getTeste();
 
-        call.enqueue(new Callback<Object>() {
+        call.enqueue(new Callback<GetWorkoutResponseDTO>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<GetWorkoutResponseDTO> call, Response<GetWorkoutResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    responseTextView.setText(response.body().toString());
+                    responseTextView.setText(response.body().getDescription());
                 } else {
                     responseTextView.setText("Request failed: " + response.code());
                 }
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<GetWorkoutResponseDTO> call, Throwable t) {
                 responseTextView.setText("Request failed: " + t.getMessage());
             }
         });
