@@ -5,27 +5,21 @@
     android:id="@+id/workout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".WorkoutActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
         android:padding="16dp">
 
-        <Button
-            android:id="@+id/buttonViewWorkout"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/responseTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Visualizar Treino" />
-
-        <Button
-            android:id="@+id/buttonViewDiet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Visualizar Dieta"
-            android:layout_marginTop="16dp" />
+            android:text="Waiting for response..."
+            android:textSize="18sp"
+            android:padding="16dp"/>
     </LinearLayout>
 
 

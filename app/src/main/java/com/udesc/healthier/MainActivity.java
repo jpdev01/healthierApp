@@ -1,8 +1,11 @@
 package com.udesc.healthier;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -19,54 +22,26 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView responseTextView;
+    private Button buttonViewWorkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        buttonViewWorkout = findViewById(R.id.buttonViewWorkout);
+
+        buttonViewWorkout.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
+            startActivity(intent);
         });
 
-        checkContactsReadPermission();
-
-        // Vincula o elemento da UI ao objeto Java
-        responseTextView = findViewById(R.id.responseTextView);
-
-        // Faz a requisição à API
-        makeApiRequest();
-    }
-
-    protected void checkContactsReadPermission() {
-        String permission = Manifest.permission.INTERNET;
-        int granted = PackageManager.PERMISSION_GRANTED;
-        if (ContextCompat.checkSelfPermission(this, permission) != granted) {
-            ActivityCompat.requestPermissions(this, new String[]{permission}, 0);
-        }
-    }
-
-    private void makeApiRequest() {
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<GetWorkoutResponseDTO> call = apiService.getTeste();
-
-        call.enqueue(new Callback<GetWorkoutResponseDTO>() {
-            @Override
-            public void onResponse(Call<GetWorkoutResponseDTO> call, Response<GetWorkoutResponseDTO> response) {
-                if (response.isSuccessful()) {
-                    responseTextView.setText(response.body().getDescription());
-                } else {
-                    responseTextView.setText("Request failed: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GetWorkoutResponseDTO> call, Throwable t) {
-                responseTextView.setText("Request failed: " + t.getMessage());
-            }
-        });
+//        buttonViewDiet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, DietActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }
