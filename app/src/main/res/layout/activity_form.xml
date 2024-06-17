@@ -14,7 +14,10 @@
         android:layout_height="wrap_content"
         android:text="Peso (kg):"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextWeight" />
 
     <EditText
         android:id="@+id/editTextWeight"
@@ -23,7 +26,10 @@
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textViewWeight"
-        app:layout_constraintTop_toTopOf="@id/textViewWeight" />
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
 
     <!-- Campo Altura -->
     <TextView
@@ -32,7 +38,10 @@
         android:layout_height="wrap_content"
         android:text="Altura (cm):"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewWeight" />
+        app:layout_constraintTop_toBottomOf="@id/textViewWeight"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextHeight" />
 
     <EditText
         android:id="@+id/editTextHeight"
@@ -41,7 +50,10 @@
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textViewHeight"
-        app:layout_constraintTop_toTopOf="@id/textViewHeight" />
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextWeight"
+        android:layout_marginTop="16dp" />
 
     <!-- Campo Idade -->
     <TextView
@@ -50,7 +62,10 @@
         android:layout_height="wrap_content"
         android:text="Idade:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewHeight" />
+        app:layout_constraintTop_toBottomOf="@id/textViewHeight"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextAge" />
 
     <EditText
         android:id="@+id/editTextAge"
@@ -59,6 +74,26 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textViewAge"
-        app:layout_constraintTop_toTopOf="@id/textViewAge" />
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextHeight"
+        android:layout_marginTop="16dp" />
+
+    <!-- Botão de Envio -->
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/black"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextAge"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingVertical="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

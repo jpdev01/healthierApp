@@ -1,6 +1,7 @@
 package com.udesc.healthier;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -12,4 +13,7 @@ public interface ApiService {
 
     @PUT("workout-plan")
     Call<Void> requestWorkoutPlanUpdate();
+
+    @PUT("userInfo")
+    Call<Void> sendForm(@Body UserInfoDTO userInfoDTO);
 }
