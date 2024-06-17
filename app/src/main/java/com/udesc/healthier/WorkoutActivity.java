@@ -1,11 +1,14 @@
 package com.udesc.healthier;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -20,6 +23,8 @@ import retrofit2.Response;
 public class WorkoutActivity  extends AppCompatActivity {
 
     private TextView responseTextView;
+
+    private Button updateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,21 @@ public class WorkoutActivity  extends AppCompatActivity {
         // Vincula o elemento da UI ao objeto Java
         responseTextView = findViewById(R.id.responseTextView);
 
+        updateButton = findViewById(R.id.buttonUpdate);
+        updateButton.setOnClickListener(v -> {
+            showUpdatingAlert();
+        });
+
         // Faz a requisição à API
         makeApiRequest();
+    }
+
+    private void showUpdatingAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Estamos atualizando seu treino. Isso pode levar alguns segundos.")
+                .setCancelable(true);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     protected void checkContactsReadPermission() {
