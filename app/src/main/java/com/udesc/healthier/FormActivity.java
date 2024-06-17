@@ -28,7 +28,32 @@ public class FormActivity extends AppCompatActivity {
         editTextWeight = findViewById(R.id.editTextWeight);
         editTextHeight = findViewById(R.id.editTextHeight);
         editTextAge = findViewById(R.id.editTextAge);
+        fillData();
         buttonSubmit.setOnClickListener(v -> sendFormData());
+    }
+
+    private void fillData() {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<GetUserInfoResponseDTO> call = apiService.getInfo();
+
+        call.enqueue(new Callback<GetUserInfoResponseDTO>() {
+            @Override
+            public void onResponse(Call<GetUserInfoResponseDTO> call, Response<GetUserInfoResponseDTO> response) {
+                if (response.isSuccessful()) {
+                    GetUserInfoResponseDTO info = response.body();
+                    editTextWeight.setText(info.weight.toString());
+                    editTextHeight.setText(info.height.toString());
+                    editTextAge.setText(info.age.toString());
+                } else {
+                    showFailureAlert();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetUserInfoResponseDTO> call, Throwable t) {
+                showFailureAlert();
+            }
+        });
     }
 
     private void sendFormData() {
