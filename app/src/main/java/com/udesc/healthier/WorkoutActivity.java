@@ -1,7 +1,6 @@
 package com.udesc.healthier;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
@@ -44,11 +43,12 @@ public class WorkoutActivity  extends AppCompatActivity {
 
         updateButton = findViewById(R.id.buttonUpdate);
         updateButton.setOnClickListener(v -> {
+            requestWorkoutUpdate();
             showUpdatingAlert();
         });
 
         // Faz a requisição à API
-        makeApiRequest();
+        getCurrentWorkout();
     }
 
     private void showUpdatingAlert() {
@@ -67,9 +67,9 @@ public class WorkoutActivity  extends AppCompatActivity {
         }
     }
 
-    private void makeApiRequest() {
+    private void getCurrentWorkout() {
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<GetWorkoutResponseDTO> call = apiService.getTeste();
+        Call<GetWorkoutResponseDTO> call = apiService.getCurrentWorkoutPlan();
 
         call.enqueue(new Callback<GetWorkoutResponseDTO>() {
             @Override
@@ -83,6 +83,27 @@ public class WorkoutActivity  extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GetWorkoutResponseDTO> call, Throwable t) {
+                responseTextView.setText("Request failed: " + t.getMessage());
+            }
+        });
+    }
+
+    private void requestWorkoutUpdate() {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<Void> call = apiService.requestWorkoutPlanUpdate();
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+//                    responseTextView.setText(response.body().getDescription());
+                } else {
+                    responseTextView.setText("Request failed: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 responseTextView.setText("Request failed: " + t.getMessage());
             }
         });
