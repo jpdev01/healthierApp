@@ -28,9 +28,7 @@ public class FormActivity extends AppCompatActivity {
         editTextWeight = findViewById(R.id.editTextWeight);
         editTextHeight = findViewById(R.id.editTextHeight);
         editTextAge = findViewById(R.id.editTextAge);
-        buttonSubmit.setOnClickListener(v -> {
-            sendFormData();
-        });
+        buttonSubmit.setOnClickListener(v -> sendFormData());
     }
 
     private void sendFormData() {
