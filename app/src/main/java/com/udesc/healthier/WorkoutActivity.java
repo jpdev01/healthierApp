@@ -24,6 +24,8 @@ public class WorkoutActivity  extends AppCompatActivity {
     private TextView responseTextView;
 
     private Button updateButton;
+    private Integer workoutCurrentVersion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class WorkoutActivity  extends AppCompatActivity {
             return insets;
         });
 
+
         checkContactsReadPermission();
 
         // Vincula o elemento da UI ao objeto Java
@@ -45,6 +48,7 @@ public class WorkoutActivity  extends AppCompatActivity {
         updateButton.setOnClickListener(v -> {
             requestWorkoutUpdate();
             showUpdatingAlert();
+            new BackgroundTask().execute(responseTextView, workoutCurrentVersion);
         });
 
         // Faz a requisição à API
@@ -75,6 +79,7 @@ public class WorkoutActivity  extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetWorkoutResponseDTO> call, Response<GetWorkoutResponseDTO> response) {
                 if (response.isSuccessful()) {
+                    workoutCurrentVersion = response.body().getVersion();
                     responseTextView.setText(response.body().getDescription());
                 } else {
                     responseTextView.setText("Request failed: " + response.code());
