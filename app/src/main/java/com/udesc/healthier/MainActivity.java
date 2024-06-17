@@ -23,6 +23,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonViewWorkout;
+    private Button buttonManagement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
             startActivity(intent);
         });
+
+        buttonManagement = findViewById(R.id.buttonManagement);
+        buttonManagement.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FormActivity.class);
+            startActivity(intent);
+        });
+
 
 //        buttonViewDiet.setOnClickListener(new View.OnClickListener() {
 //            @Override

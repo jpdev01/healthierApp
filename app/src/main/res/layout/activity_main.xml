@@ -29,6 +29,15 @@
             android:layout_height="wrap_content"
             android:text="Visualizar Dieta"
             android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/buttonManagement"
+            style="@style/CustomButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gerenciar Cadastro"
+            android:layout_marginTop="16dp" />
+
     </LinearLayout>
 
 
