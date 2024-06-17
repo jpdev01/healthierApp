@@ -48,7 +48,7 @@ public class WorkoutActivity  extends AppCompatActivity {
         updateButton.setOnClickListener(v -> {
             requestWorkoutUpdate();
             showUpdatingAlert();
-            new BackgroundTask().execute(responseTextView, workoutCurrentVersion);
+            new WorkoutUpdateTask(workoutCurrentVersion, responseTextView).execute();
         });
 
         // Faz a requisição à API

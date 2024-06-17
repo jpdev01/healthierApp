@@ -17,9 +17,8 @@ public interface ApiService {
     @PUT("workout-plan")
     Call<Void> requestWorkoutPlanUpdate();
 
-    @PUT("diet")
+    @PUT("/diet")
     Call<Void> requestDietUpdate();
-
 
     @PUT("user-info")
     Call<Void> sendForm(@Body UserInfoDTO userInfoDTO);

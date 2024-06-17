@@ -44,14 +44,12 @@ public class DietActivity extends AppCompatActivity {
         // Vincula o elemento da UI ao objeto Java
         responseTextView = findViewById(R.id.responseTextView);
 
+        getCurrentDiet();
         updateButton = findViewById(R.id.buttonUpdate);
         updateButton.setOnClickListener(v -> {
             requestUpdate();
             showUpdatingAlert();
-            new BackgroundTask().execute(responseTextView, dietCurrentVersion);
         });
-
-        getCurrentDiet();
     }
 
     private void showUpdatingAlert() {
@@ -100,7 +98,7 @@ public class DietActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-//                    responseTextView.setText(response.body().getDescription());
+                    new DietUpdateTask(dietCurrentVersion, responseTextView).execute();
                 } else {
                     responseTextView.setText("Request failed: " + response.code());
                 }
