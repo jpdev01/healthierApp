@@ -11,8 +11,15 @@ public interface ApiService {
     @GET("/workout-plan")
     Call<GetWorkoutResponseDTO> getCurrentWorkoutPlan();
 
+    @GET("/diet")
+    Call<GetDietResponseDTO> getDiet();
+
     @PUT("workout-plan")
     Call<Void> requestWorkoutPlanUpdate();
+
+    @PUT("diet")
+    Call<Void> requestDietUpdate();
+
 
     @PUT("user-info")
     Call<Void> sendForm(@Body UserInfoDTO userInfoDTO);

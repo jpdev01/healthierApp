@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WorkoutActivity" />
+        <activity android:name=".DietActivity" />
         <activity android:name=".FormActivity" />
     </application>
 
