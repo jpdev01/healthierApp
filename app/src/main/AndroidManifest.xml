@@ -28,6 +28,7 @@
         <activity android:name=".activity.WorkoutActivity" />
         <activity android:name=".activity.DietActivity" />
         <activity android:name=".activity.FormActivity" />
+        <activity android:name=".activity.RegistrationActivity" />
     </application>
 
 </manifest>
