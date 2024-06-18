@@ -1,4 +1,4 @@
-package com.udesc.healthier;
+package com.udesc.healthier.api;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;

@@ -1,18 +1,22 @@
-package com.udesc.healthier;
+package com.udesc.healthier.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.udesc.healthier.api.ApiService;
+import com.udesc.healthier.api.dto.LoginRequestDTO;
+import com.udesc.healthier.api.dto.LoginResponseDTO;
+import com.udesc.healthier.R;
+import com.udesc.healthier.api.RetrofitClient;
+import com.udesc.healthier.api.TokenManager;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,11 +47,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<LoginResponse> call = apiService.login(new LoginRequest(email, password));
+        Call<LoginResponseDTO> call = apiService.login(new LoginRequestDTO(email, password));
 
-        call.enqueue(new Callback<LoginResponse>() {
+        call.enqueue(new Callback<LoginResponseDTO>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<LoginResponseDTO> call, Response<LoginResponseDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     TokenManager tokenManager = new TokenManager(LoginActivity.this);
                     tokenManager.saveToken(response.body().getToken());
@@ -60,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<LoginResponseDTO> call, Throwable t) {
                 // Erro de rede
                 Toast.makeText(LoginActivity.this, "Erro de rede", Toast.LENGTH_SHORT).show();
             }

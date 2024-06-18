@@ -1,6 +1,6 @@
-package com.udesc.healthier;
+package com.udesc.healthier.api.dto;
 
-public class LoginResponse {
+public class LoginResponseDTO {
     private boolean success;
     private String token;
     private String message;

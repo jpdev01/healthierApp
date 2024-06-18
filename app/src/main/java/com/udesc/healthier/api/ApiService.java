@@ -1,4 +1,11 @@
-package com.udesc.healthier;
+package com.udesc.healthier.api;
+
+import com.udesc.healthier.api.dto.UserInfoDTO;
+import com.udesc.healthier.api.dto.GetDietResponseDTO;
+import com.udesc.healthier.api.dto.GetUserInfoResponseDTO;
+import com.udesc.healthier.api.dto.GetWorkoutResponseDTO;
+import com.udesc.healthier.api.dto.LoginRequestDTO;
+import com.udesc.healthier.api.dto.LoginResponseDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -27,5 +34,5 @@ public interface ApiService {
     Call<GetUserInfoResponseDTO> getInfo();
 
     @POST("user/login")
-    Call<LoginResponse> login(@Body LoginRequest loginRequest);
+    Call<LoginResponseDTO> login(@Body LoginRequestDTO loginRequest);
 }

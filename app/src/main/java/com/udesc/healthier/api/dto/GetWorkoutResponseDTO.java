@@ -1,6 +1,6 @@
-package com.udesc.healthier;
+package com.udesc.healthier.api.dto;
 
-public class GetDietResponseDTO {
+public class GetWorkoutResponseDTO {
 
     String description;
     Integer version;

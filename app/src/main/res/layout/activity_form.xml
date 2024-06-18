@@ -5,7 +5,7 @@
     android:id="@+id/workout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormActivity">
+    tools:context=".activity.FormActivity">
 
     <!-- Campo Peso -->
     <TextView

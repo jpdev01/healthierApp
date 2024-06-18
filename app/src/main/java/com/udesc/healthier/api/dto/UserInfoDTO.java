@@ -1,4 +1,4 @@
-package com.udesc.healthier;
+package com.udesc.healthier.api.dto;
 
 public class UserInfoDTO {
 

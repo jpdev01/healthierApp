@@ -1,4 +1,4 @@
-package com.udesc.healthier;
+package com.udesc.healthier.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,11 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONObject;
+import com.udesc.healthier.api.ApiService;
+import com.udesc.healthier.api.dto.GetUserInfoResponseDTO;
+import com.udesc.healthier.R;
+import com.udesc.healthier.api.RetrofitClient;
+import com.udesc.healthier.api.dto.UserInfoDTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,9 +45,9 @@ public class FormActivity extends AppCompatActivity {
             public void onResponse(Call<GetUserInfoResponseDTO> call, Response<GetUserInfoResponseDTO> response) {
                 if (response.isSuccessful()) {
                     GetUserInfoResponseDTO info = response.body();
-                    editTextWeight.setText(info.weight.toString());
-                    editTextHeight.setText(info.height.toString());
-                    editTextAge.setText(info.age.toString());
+                    editTextWeight.setText(info.getWeight().toString());
+                    editTextHeight.setText(info.getHeight().toString());
+                    editTextAge.setText(info.getAge().toString());
                 } else {
                     showFailureAlert();
                 }

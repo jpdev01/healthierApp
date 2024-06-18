@@ -1,6 +1,10 @@
-package com.udesc.healthier;
+package com.udesc.healthier.task;
 
 import android.widget.TextView;
+
+import com.udesc.healthier.api.ApiService;
+import com.udesc.healthier.api.RetrofitClient;
+import com.udesc.healthier.api.dto.GetWorkoutResponseDTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,4 +1,4 @@
-package com.udesc.healthier;
+package com.udesc.healthier.api;
 
 import android.content.Context;
 import android.content.SharedPreferences;
