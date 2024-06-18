@@ -25,4 +25,7 @@ public interface ApiService {
 
     @GET("user-info")
     Call<GetUserInfoResponseDTO> getInfo();
+
+    @POST("user/login")
+    Call<LoginResponse> login(@Body LoginRequest loginRequest);
 }
