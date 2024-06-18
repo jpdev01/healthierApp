@@ -22,9 +22,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonViewWorkout;
-    private Button buttonViewDiet;
-    private Button buttonManagement;
+    private Button buttonViewWorkout, buttonViewDiet, buttonManagement, buttonLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +48,17 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, DietActivity.class);
             startActivity(intent);
         });
+
+        buttonLogout = findViewById(R.id.buttonLogout);
+        buttonLogout.setOnClickListener(v -> {
+            logout();
+        });
+    }
+
+    private void logout() {
+        new TokenManager(MainActivity.this).clearToken();
+        RetrofitClient.destroy();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
