@@ -88,13 +88,17 @@ public class WorkoutActivity  extends AppCompatActivity {
                     workoutCurrentVersion = response.body().getVersion();
                     responseTextView.setText(response.body().getDescription());
                 } else {
-                    responseTextView.setText("Request failed: " + response.code());
+                    if (response.code() == 404) {
+                        responseTextView.setText("Você ainda não tem um treino. Solicite-o abaixo");
+                    } else {
+                        responseTextView.setText("Não foi possível carregar seu treino. Tente novamente mais tarde.");
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<GetWorkoutResponseDTO> call, Throwable t) {
-                responseTextView.setText("Request failed: " + t.getMessage());
+                responseTextView.setText("Não foi possível carregar seu treino. Tente novamente mais tarde.");
             }
         });
     }
