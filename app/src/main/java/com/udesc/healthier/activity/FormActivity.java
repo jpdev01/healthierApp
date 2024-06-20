@@ -47,7 +47,7 @@ public class FormActivity extends AppCompatActivity {
                     GetUserInfoResponseDTO info = response.body();
                     editTextWeight.setText(info.getWeight().toString());
                     editTextHeight.setText(info.getHeight().toString());
-                    editTextDateOfBirth.setText(info.getAge().toString());
+                    editTextDateOfBirth.setText(info.getDateOfBirth().toString());
                 } else {
                     if (404 == response.code()) return;
                     showFailureAlert();
@@ -65,11 +65,11 @@ public class FormActivity extends AppCompatActivity {
         // Obter os valores dos campos
         double weight = Double.parseDouble(editTextWeight.getText().toString());
         double height = Double.parseDouble(editTextHeight.getText().toString());
-        Integer age = Integer.valueOf(editTextDateOfBirth.getText().toString());
+        String dateOfBirth = String.valueOf(editTextDateOfBirth.getText());
 
         // Criar JSON
         try {
-            UserInfoDTO userInfo = new UserInfoDTO(weight, height, age);
+            UserInfoDTO userInfo = new UserInfoDTO(weight, height, dateOfBirth);
 
             ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
             Call<Void> call = apiService.sendForm(userInfo);

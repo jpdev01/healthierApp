@@ -5,7 +5,7 @@ public class GetUserInfoResponseDTO {
     String height;
     Integer weight;
 
-    Integer age;
+    String dateOfBirth;
 
     public String getHeight() {
         return height;
@@ -23,11 +23,11 @@ public class GetUserInfoResponseDTO {
         this.weight = weight;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

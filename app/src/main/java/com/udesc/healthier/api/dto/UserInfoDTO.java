@@ -4,12 +4,11 @@ public class UserInfoDTO {
 
     double weight;
     double height;
+    String dateOfBirth;
 
-    Integer age;
-
-    public UserInfoDTO(double weight, double height, Integer age) {
+    public UserInfoDTO(double weight, double height, String dateOfBirth) {
         this.weight = weight;
         this.height = height;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
     }
 }
