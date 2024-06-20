@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class FormActivity extends AppCompatActivity {
 
-    private EditText editTextWeight, editTextHeight, editTextAge;
+    private EditText editTextWeight, editTextHeight, editTextDateOfBirth;
 
 
     @Override
@@ -31,7 +31,7 @@ public class FormActivity extends AppCompatActivity {
         Button buttonSubmit = findViewById(R.id.buttonSubmit);
         editTextWeight = findViewById(R.id.editTextWeight);
         editTextHeight = findViewById(R.id.editTextHeight);
-        editTextAge = findViewById(R.id.editTextAge);
+        editTextDateOfBirth = findViewById(R.id.editTextDateOfBirth);
         fillData();
         buttonSubmit.setOnClickListener(v -> sendFormData());
     }
@@ -47,8 +47,9 @@ public class FormActivity extends AppCompatActivity {
                     GetUserInfoResponseDTO info = response.body();
                     editTextWeight.setText(info.getWeight().toString());
                     editTextHeight.setText(info.getHeight().toString());
-                    editTextAge.setText(info.getAge().toString());
+                    editTextDateOfBirth.setText(info.getAge().toString());
                 } else {
+                    if (404 == response.code()) return;
                     showFailureAlert();
                 }
             }
@@ -64,7 +65,7 @@ public class FormActivity extends AppCompatActivity {
         // Obter os valores dos campos
         double weight = Double.parseDouble(editTextWeight.getText().toString());
         double height = Double.parseDouble(editTextHeight.getText().toString());
-        Integer age = Integer.valueOf(editTextAge.getText().toString());
+        Integer age = Integer.valueOf(editTextDateOfBirth.getText().toString());
 
         // Criar JSON
         try {
