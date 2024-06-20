@@ -17,11 +17,11 @@ public class RetrofitClient {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new AuthInterceptor(authToken))
                 .build();
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .client(okHttpClient) // Adicione o cliente HTTP com o interceptor
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient) // Adicione o cliente HTTP com o interceptor
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     public static Retrofit getClient() {
