@@ -1,5 +1,6 @@
 package com.udesc.healthier.api;
 
+import com.udesc.healthier.api.dto.CreateUserRequestDTO;
 import com.udesc.healthier.api.dto.UserInfoDTO;
 import com.udesc.healthier.api.dto.GetDietResponseDTO;
 import com.udesc.healthier.api.dto.GetUserInfoResponseDTO;
@@ -35,4 +36,7 @@ public interface ApiService {
 
     @POST("user/login")
     Call<LoginResponseDTO> login(@Body LoginRequestDTO loginRequest);
+
+    @POST("/user")
+    Call<Void> registry(@Body CreateUserRequestDTO createUserDTO);
 }

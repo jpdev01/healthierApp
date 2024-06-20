@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText passwordEditText;
-    private Button loginButton;
+    private Button loginButton, registryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,11 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
+        registryButton = findViewById(R.id.registryButton);
 
         validateAlreadyLogged();
         loginButton.setOnClickListener(v -> performLogin());
+        registryButton.setOnClickListener(v -> redirectToRegistration());
     }
 
     private void performLogin() {
@@ -78,6 +80,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void redirectToMain() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void redirectToRegistration() {
+        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
         startActivity(intent);
     }
 }
