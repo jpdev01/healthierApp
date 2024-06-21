@@ -107,16 +107,16 @@ public class DietActivity extends AppCompatActivity {
                     new DietUpdateTask(dietCurrentVersion, responseTextView).execute();
                 } else {
                     if (response.code() == 404) {
-                        responseTextView.setText("Você ainda não tem um treino. Solicite-o abaixo");
+                        responseTextView.setText("Você ainda não tem uma dieta. Solicite-a abaixo");
                     } else {
-                        responseTextView.setText("Não foi possível carregar seu treino. Tente novamente mais tarde.");
+                        responseTextView.setText("Não foi possível carregar sua dieta. Tente novamente mais tarde.");
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                responseTextView.setText("Não foi possível carregar seu treino. Tente novamente mais tarde.");
+                responseTextView.setText("Não foi possível carregar sua dieta. Tente novamente mais tarde.");
             }
         });
     }
