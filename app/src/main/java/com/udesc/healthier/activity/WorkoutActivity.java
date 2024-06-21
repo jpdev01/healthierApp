@@ -30,7 +30,7 @@ public class WorkoutActivity  extends AppCompatActivity {
     private TextView responseTextView;
 
     private Button updateButton;
-    private Integer workoutCurrentVersion;
+    private Long workoutCurrentVersion;
 
 
     @Override
@@ -85,7 +85,7 @@ public class WorkoutActivity  extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetWorkoutResponseDTO> call, Response<GetWorkoutResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    workoutCurrentVersion = response.body().getVersion();
+                    workoutCurrentVersion = response.body().getId();
                     responseTextView.setText(response.body().getDescription());
                 } else {
                     if (response.code() == 404) {

@@ -3,7 +3,7 @@ package com.udesc.healthier.api.dto;
 public class GetDietResponseDTO {
 
     String description;
-    Integer version;
+    Long id;
 
     public String getDescription() {
         return description;
@@ -13,11 +13,11 @@ public class GetDietResponseDTO {
         this.description = description;
     }
 
-    public Integer getVersion() {
-        return version;
+    public Long getId() {
+        return id;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

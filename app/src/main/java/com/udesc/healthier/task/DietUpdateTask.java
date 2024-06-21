@@ -12,11 +12,10 @@ import retrofit2.Response;
 
 public class DietUpdateTask extends BackgroundTask {
 
-    Integer currentVersion;
-    Boolean keepFetching = true;
+    Long currentVersion;
     TextView responseTextView;
 
-    public DietUpdateTask(Integer currentVersion, TextView responseTextView) {
+    public DietUpdateTask(Long currentVersion, TextView responseTextView) {
         this.currentVersion = currentVersion;
         this.responseTextView = responseTextView;
     }
@@ -29,10 +28,10 @@ public class DietUpdateTask extends BackgroundTask {
         call.enqueue(new Callback<GetDietResponseDTO>() {
             @Override
             public void onResponse(Call<GetDietResponseDTO> call, Response<GetDietResponseDTO> response) {
-                boolean updated = !currentVersion.equals(response.body().getVersion());
+                boolean updated = !currentVersion.equals(response.body().getId());
                 if (!updated) return;
 
-                keepFetching = false;
+                DietUpdateTask.super.disable();
                 if (response.isSuccessful()) {
                     responseTextView.setText(response.body().getDescription());
                 } else {

@@ -15,7 +15,7 @@ abstract class BackgroundTask {
     private static final long INTERVAL_BETWEEN_REQUESTS_MILLIS = 10000;
     private static final int MAX_CALLS = 10;
 
-    private boolean keepFetching = true;
+    protected boolean keepFetching = true;
 
     public void execute() {
         try {
@@ -24,17 +24,11 @@ abstract class BackgroundTask {
                 while (keepFetching) {
                     int call = callsCount.incrementAndGet();
                     if (call > MAX_CALLS) {
-                        keepFetching = false;
+                        disable();
                         return;
                     }
                     get();
-                    if (keepFetching) {
-                        try {
-                            Thread.sleep(INTERVAL_BETWEEN_REQUESTS_MILLIS);
-                        } catch (InterruptedException exception) {
-                            exception.printStackTrace();
-                        }
-                    }
+                    sleep();
                 }
             });
         } catch (Exception exception) {
@@ -43,5 +37,19 @@ abstract class BackgroundTask {
     }
 
     public abstract void get();
+
+    private void sleep() {
+        if (keepFetching) {
+            try {
+                Thread.sleep(INTERVAL_BETWEEN_REQUESTS_MILLIS);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    protected void disable() {
+        keepFetching = false;
+    }
 
 }

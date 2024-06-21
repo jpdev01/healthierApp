@@ -30,7 +30,7 @@ public class DietActivity extends AppCompatActivity {
     private TextView responseTextView;
 
     private Button updateButton;
-    private Integer dietCurrentVersion;
+    private Long dietCurrentVersion;
 
 
     @Override
@@ -82,7 +82,7 @@ public class DietActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetDietResponseDTO> call, Response<GetDietResponseDTO> response) {
                 if (response.isSuccessful()) {
-                    dietCurrentVersion = response.body().getVersion();
+                    dietCurrentVersion = response.body().getId();
                     responseTextView.setText(response.body().getDescription());
                 } else {
                     responseTextView.setText("Request failed: " + response.code());

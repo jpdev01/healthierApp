@@ -11,12 +11,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WorkoutUpdateTask extends BackgroundTask{
-    Integer currentVersion;
-    Boolean keepFetching = true;
+    Long previousWorkoutId;
+
     TextView responseTextView;
 
-    public WorkoutUpdateTask(Integer currentVersion, TextView responseTextView) {
-        this.currentVersion = currentVersion;
+    public WorkoutUpdateTask(Long previousWorkoutId, TextView responseTextView) {
+        this.previousWorkoutId = previousWorkoutId;
         this.responseTextView = responseTextView;
     }
 
@@ -28,10 +28,10 @@ public class WorkoutUpdateTask extends BackgroundTask{
         call.enqueue(new Callback<GetWorkoutResponseDTO>() {
             @Override
             public void onResponse(Call<GetWorkoutResponseDTO> call, Response<GetWorkoutResponseDTO> response) {
-                boolean updated = !currentVersion.equals(response.body().getVersion());
+                boolean updated = !previousWorkoutId.equals(response.body().getId());
                 if (!updated) return;
 
-                keepFetching = false;
+                WorkoutUpdateTask.super.disable();
                 if (response.isSuccessful()) {
                     responseTextView.setText(response.body().getDescription());
                 } else {
